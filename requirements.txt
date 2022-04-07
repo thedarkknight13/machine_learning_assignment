@@ -5,6 +5,5 @@ numpy
 opencv_python
 pandas
 scikit_image
-tensorflow
 Werkzeug
 gunicorn
