@@ -49,7 +49,7 @@
 	<script type="text/javascript">
 		function validate() {
 			var uploadField = document.getElementById("file");
-		    	if(this.files[0].size > 2 * 1024 * 1024){
+		    	if(uploadField.files[0].size > 2 * 1024 * 1024){
 		      		document.getElementById("client-side-validation").innerHTML="File is too large. The maximum size is 2MB.";
 				return false;
 		    	} else {
