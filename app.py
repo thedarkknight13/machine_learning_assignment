@@ -60,7 +60,7 @@ def search_for_obj():
         # Checking if the obj value is empty
         if obj == "" or obj is None:
             return render_template("home.html", error=True, message="Object for query should not be blank")
-        elif obj not in classes:
+        elif obj.lower().replace(" ", "_") not in classes:
             return render_template("home.html", error=True, message="Our model was trained with imagenet classes. We are sorry we cannot identify the object you want. You can try another one...")
 
         # First delete the frames currently in the frames folder
@@ -121,7 +121,7 @@ def search_for_obj():
         # Finding the frames that include the object
         classe = ""
         for c in classes:
-            if obj == c:
+            if obj.lower().replace(" ", "_") == c:
                 classe = c
                 break
         
