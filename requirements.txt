@@ -2,7 +2,7 @@ Flask
 keras
 matplotlib
 numpy
-opencv_python
+opencv_python_headless
 pandas
 scikit_image
 tensorflow-cpu
