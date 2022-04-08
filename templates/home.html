@@ -34,7 +34,7 @@
 		<form method="post" action="/search_for_obj" enctype="multipart/form-data">
 			<div class="form-group">
 				<label for="file">Upload the video:</label>
-				<input id="file" type="file" accept="video/*" name="file" class="form-control">
+				<input onsubmit="return validate()" id="file" type="file" accept="video/*" name="file" class="form-control">
 			</div>
 			<div class="form-group">
 				<label for="text">Enter the object to search for:</label>
@@ -47,12 +47,15 @@
 
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 	<script type="text/javascript">
-		var uploadField = document.getElementById("file");
-
-		uploadField.onchange = function() {
-		    if(this.files[0].size > 2 * 1024 * 1024){
-		       document.getElementById("file").innerHTML="File is too large. The maximum size is 2MB.";
-		    };
+		function validate() {
+			var uploadField = document.getElementById("file");
+		    	if(this.files[0].size > 2 * 1024 * 1024){
+		      		document.getElementById("client-side-validation").innerHTML="File is too large. The maximum size is 2MB.";
+				return false;
+		    	} else {
+				return true;
+			}
+			;
 		};
 	</script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
