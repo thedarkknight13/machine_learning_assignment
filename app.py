@@ -81,10 +81,10 @@ def search_for_obj():
 
         # Separating the video into frames
         cap = cv2.VideoCapture(os.path.join(app.config['UPLOAD_FOLDER'], filename) )  # capturing the video from the given path
-        frameRate = cap.get(5) #frame rate
+        frameRate = cap.get(8) #frame rate
         count = 0
         success, image = cap.read()
-        for i in range(30):
+        for i in range(10):
             cv2.imwrite(os.path.join("static/frames/", "frame%d.jpg" % count), image)
             file_names = file_names.append({"names":"frame%d.jpg" % count}, ignore_index=True)
             success,image = cap.read()
