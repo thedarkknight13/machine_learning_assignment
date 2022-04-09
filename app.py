@@ -49,7 +49,7 @@ def file_to_large(error):
 
 @app.route("/search_for_obj", methods=["POST"])
 def search_for_obj():
-    file_names in pd.DataFrame(columns=["names"]).split(",")
+    file_names in pd.DataFrame(columns=["names"])
     if 'file' not in request.files:
         return render_template("home.html", error=True, message="You are supposed to upload a video file!")
     file = request.files['file']
@@ -58,9 +58,14 @@ def search_for_obj():
     else:
         obj = request.form.get("object")
         # Checking if the obj value is empty
+        classe = ""
         if obj == "" or obj is None:
             return render_template("home.html", error=True, message="Object for query should not be blank")
-        elif obj.lower().replace(" ", "_") not in classes:
+        else:
+            for c in classes:
+                if obj.lower().replace(" ", "_") in c.split(","):
+                    classe = c
+                    break
             return render_template("home.html", error=True, message="Our model was trained with imagenet classes. We are sorry we cannot identify the object you want. You can try another one...")
 
         # First delete the frames currently in the frames folder
@@ -119,11 +124,6 @@ def search_for_obj():
         predictions = model.predict(frames)
 
         # Finding the frames that include the object
-        classe = ""
-        for c in classes:
-            if obj.lower().replace(" ", "_") in c.split(","):
-                classe = c
-                break
         
         num = class_to_num.loc[classe][0]
 
