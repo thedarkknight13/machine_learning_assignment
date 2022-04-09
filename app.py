@@ -58,7 +58,7 @@ def search_for_obj():
     else:
         obj = request.form.get("object")
         # Checking if the obj value is empty
-        classe = ""
+        classe = None
         if obj == "" or obj is None:
             return render_template("home.html", error=True, message="Object for query should not be blank")
         else:
@@ -66,7 +66,8 @@ def search_for_obj():
                 if obj.lower().replace(" ", "_") in c.split(","):
                     classe = c
                     break
-            return render_template("home.html", error=True, message="Our model was trained with imagenet classes. We are sorry we cannot identify the object you want. You can try another one...")
+            if not classe:
+                return render_template("home.html", error=True, message="Our model was trained with imagenet classes. We are sorry we cannot identify the object you want. You can try another one...")
 
         # First delete the frames currently in the frames folder
         folder = 'static/frames'
