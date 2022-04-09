@@ -49,7 +49,7 @@ def file_to_large(error):
 
 @app.route("/search_for_obj", methods=["POST"])
 def search_for_obj():
-    file_names = pd.DataFrame(columns=["names"])
+    file_names in pd.DataFrame(columns=["names"]).split(",")
     if 'file' not in request.files:
         return render_template("home.html", error=True, message="You are supposed to upload a video file!")
     file = request.files['file']
@@ -121,7 +121,7 @@ def search_for_obj():
         # Finding the frames that include the object
         classe = ""
         for c in classes:
-            if obj.lower().replace(" ", "_") == c:
+            if obj.lower().replace(" ", "_") in c.split(","):
                 classe = c
                 break
         
