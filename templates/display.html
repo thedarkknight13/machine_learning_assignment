@@ -28,6 +28,9 @@
 	<div id="top" class="container color">
 		<h2 style="margin-left: 20px;"><b>Here are the frames that contain the object:</b></h2>
 		<br>
+                {% if not num %} 	
+                      <div id="server-side-validation" style="color: red; font-size: medium;">There are no frames with that object in this video</div>	 
+                {% endif %}
 		{% for i in range(0, num) %}
 		<img class="img-responsive" src="{{ user_images[i] }}">
 		{% endfor %}
